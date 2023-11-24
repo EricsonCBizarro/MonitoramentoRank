@@ -8,7 +8,7 @@ class HighscoreEntry(db.Model):
     vocation = db.Column(db.String(50), nullable=False)
     nivel = db.Column(db.String(10), nullable=False)
     pontos = db.Column(db.String(20), nullable=False)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    numero_lote = db.Column(db.String(20), nullable=False)
 
 def __repr__(self):
-    return f"<HighscoreEntry nome={self.nome}, rank={self.rank}, vocation={self.vocation}, nivel={self.nivel}, pontos={self.pontos}>"
+    return f"<HighscoreEntry nome={self.nome}, rank={self.rank}, vocation={self.vocation}, nivel={self.nivel}, pontos={self.pontos}, numero_lote={self.numero_lote}>"

@@ -1,0 +1,54 @@
+<!-- templates/index.html -->
+{% extends 'layouts/base.html' %}
+
+{% block title %}Tibia Highscore{% endblock %}
+
+{% block content %}
+
+        <!-- Formulário para selecionar o lote -->
+        <form action="{{ url_for('highscore.carregar_lote') }}" method="get">
+            <label for="lote">Selecione o lote:</label>
+            <select name="lote" id="lote">
+                {% for numero_lote in numeros_lotes %}
+                    <option value="{{ numero_lote }}">{{ numero_lote }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Carregar Dados do Lote</button>
+        </form>
+        
+    
+        <!-- Formulário para carregar dados manualmente -->
+        <form action="{{ url_for('highscore.carregar_dados') }}" method="post">
+            <button type="submit">Carregar Dados Manualmente</button>
+        </form>
+
+    {% if dados_highscore %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Vocation</th>
+                    <th>Level</th>
+                    <th>Points</th>
+                    <th>Lote</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jogador in dados_highscore %}
+                    <tr>
+                        <td>{{ jogador.rank }}</td>
+                        <td>{{ jogador.nome }}</td>
+                        <td>{{ jogador.vocation }}</td>
+                        <td>{{ jogador.nivel }}</td>
+                        <td>{{ jogador.pontos }}</td>
+                        <td>{{ jogador.numero_lote }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Não foi possível obter os dados do highscore.</p>
+    {% endif %}
+
+{% endblock %}

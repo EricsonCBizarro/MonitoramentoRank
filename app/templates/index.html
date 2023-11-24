@@ -1,46 +1,9 @@
 <!-- templates/index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tibia Highscore</title>
-</head>
-<body>
+{% extends 'layouts/base.html' %}
 
+{% block title %}Tibia Highscore{% endblock %}
+
+{% block content %}
     <h1>Tibia Highscore</h1>
-
-    <!-- Adicione este formulário e botão no local desejado dentro do HTML -->
-    <form action="{{ url_for('highscore.carregar_dados') }}" method="post">
-        <button type="submit">Carregar Dados Manualmente</button>
-    </form>
-
-    {% if dados_highscore %}
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>Vocation</th>
-                    <th>Level</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for jogador in dados_highscore %}
-                    <tr>
-                        <td>{{ jogador.rank }}</td>
-                        <td>{{ jogador.nome }}</td>
-                        <td>{{ jogador.vocation }}</td>
-                        <td>{{ jogador.nivel }}</td>
-                        <td>{{ jogador.pontos }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>Não foi possível obter os dados do highscore.</p>
-    {% endif %}
-
-</body>
-</html>
+    <!-- Restante do conteúdo do seu template -->
+{% endblock %}
