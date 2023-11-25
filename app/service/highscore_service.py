@@ -79,9 +79,13 @@ def carregar_ultimo_dados(numero_lote):
     
     return dados_highscore
 
-def carregar_lotes():
+def carregar_lotes(ordem):
     
-    todos_os_lotes = db.session.query(HighscoreEntry.numero_lote).distinct().order_by(HighscoreEntry.numero_lote.desc()).all()
+    if ordem == 'desc':
+        todos_os_lotes = db.session.query(HighscoreEntry.numero_lote).distinct().order_by(HighscoreEntry.numero_lote.desc()).all()
+    else:
+        todos_os_lotes = db.session.query(HighscoreEntry.numero_lote).distinct().order_by(HighscoreEntry.numero_lote.asc()).all()
+
     return [lote[0] for lote in todos_os_lotes]
 
 def obter_lote_mais_recente(lista_de_lotes):

@@ -13,7 +13,7 @@ highscore_bp = Blueprint('highscore', __name__)
 def index():
     # Obtenha o número do lote a partir da query string na URL
     numero_lote = request.args.get('lote')
-    dados_lotes = carregar_lotes()
+    dados_lotes = carregar_lotes('desc')
     # Se não houver número de lote na query string, use o mais recente
     if not numero_lote:
         # Busca os lotes do banco de dados
@@ -24,7 +24,7 @@ def index():
     dados_highscore = carregar_ultimo_dados(numero_lote)
 
     # Renderiza a página inicial com os dados obtidos
-    return render_template('highscore.html', numeros_lotes=carregar_lotes(), dados_highscore=dados_highscore)
+    return render_template('highscore.html', numeros_lotes=carregar_lotes('desc'), dados_highscore=dados_highscore)
 
 @highscore_bp.route('/carregar-dados', methods=['POST'])
 def carregar_dados():

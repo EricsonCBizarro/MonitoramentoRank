@@ -1,9 +1,27 @@
 <!-- templates/powerlevel.html -->
 {% extends 'layouts/base.html' %}
 
-{% block title %}Power Level{% endblock %}
+{% block title %}Tibia Power Level{% endblock %}
 
 {% block content %}
     <h1>Power Level</h1>
-    <!-- Restante do conteúdo do seu template -->
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Nome</th>
+                <th>Experiência Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jogador in ranking %}
+                <tr>
+                    <td>{{ jogador['rank'] }}</td>
+                    <td>{{ jogador['nome'] }}</td>
+                    <td>{{ jogador['experiencia_total'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
